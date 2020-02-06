@@ -1,1 +1,1 @@
-#BU Visual Regression WordPress assist plugin
+# BU Visual Regression WordPress assist plugin
