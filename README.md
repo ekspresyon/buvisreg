@@ -3,11 +3,12 @@
 This plugin is intended to facilitate gathering URLs from a specific WordPress site. The idea is geared towards visual regression testing. It is Initially developed with the use of BackstopJS in mind but can be adapted as it simply helps in the management of the URLs for testing.
 
 ## The name
- The name of the plugin will most likely change in time as its functionality evolve
-bu-vis-reg
-bu = Boston University
-vis = Visual
-reg = Regression
+ The name of the plugin will most likely change in time as its functionality evolve  
+
+bu-vis-reg  
+bu = Boston University  
+vis = Visual  
+reg = Regression  
 
 ## Admin page
 The link to the admin page for this plugin is located under “Tools” in the dashboard menu
@@ -21,7 +22,7 @@ In admin page, select the type of post or content you wish to get the URLs from 
 To use the list, hit “Export list” and the list of URLs will be available for download as a JSON file.
 
 ## How it works
-The plugin contains a set of custom API endpoints that helps with sending request via the wp-json option built into WordPress. For more information on wp-json visit the WordPress developer codex.
+The plugin contains a set of custom API endpoints that helps with sending request via the wp-json option built into WordPress. For more information on wp-json visit the WordPress developer codex.  
 
 The response is than processes by JavaScript on the client side and generates a list table that can be later customized.
 
