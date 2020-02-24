@@ -1,1 +1,1 @@
-README.md
+# BU Visual Regression WordPress assist plugin
