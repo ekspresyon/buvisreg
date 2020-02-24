@@ -79,7 +79,9 @@ class VisReg_url_List_Table extends WP_List_Table {
         $columns = array(
             'cb' => '<input type="checkbox" />', //Render a checkbox instead of text
             'post_title' => __('Title'),
-		    'guid'      => __('URL')
+		    'guid'      => __('URL'),
+		    'post_type' => __('Post type'),
+		    'post_last_test' => __('Last tested')
         );
         return $columns;
     }

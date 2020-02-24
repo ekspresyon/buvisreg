@@ -32,15 +32,17 @@ function visreg_meta_box_callback($post){
 
 
 <?php
+ 
 }
 
 function visreg_save_status($post_id){
+
     if( isset( $_POST[ 'visreg_checker' ] ) ) {
         update_post_meta( $post_id, '_vr_status_key', '1' );
-        visreg_add_link();
+        //visreg_add_link();
     } else {
         update_post_meta( $post_id, '_vr_status_key', '0' );
-        visreg_drop_link();
+        //visreg_drop_link();
     }
 }
 add_action('save_post', 'visreg_save_status');
@@ -51,42 +53,29 @@ add_action('save_post', 'visreg_save_status');
  */
 
 // Add link
-function visreg_add_link(){
+
+function visreg_add_link($post){
     global $wpdb;
     $vrPostId = $post->ID;
     $visregLink = get_permalink( $vrPostId );
+    $vrPstTitl = get_the_title( $vrPostId );
     $visregTabl = $wpdb->prefix . 'visreg';
-    //$recID = $wpdb->get_var( "SELECT ID FROM ". $visregTabl ." WHERE post_id LIKE ".$vrPostId."'");
-    $wpdb->replace( $visregTabl , array('post_id' => $vrPostId, 'guid' => $visregLink), array('%d', '%s',));
-}
 
+    $recID = $wpdb->get_var( "SELECT id FROM ". $visregTabl ." WHERE post_id LIKE ".$vrPostId );
+    $wpdb->replace( $visregTabl , array(
+                                        'id'=> $recID, 
+                                        'post_id' => $vrPostId,
+                                        'post_title' => $vrPstTitl, 
+                                        'guid' => $visregLink), 
+                                        array('%d', '%d', '%s', '%s')
+                                    );
+
+}
 // Remove link
-function visreg_drop_link(){
+function visreg_drop_link($post){
     global $wpdb;
     $vrPostId = $post->ID;
     $visregTabl = $wpdb->prefix . 'visreg';
     $wpdb->delete( $visregTabl, array( "post_id" => $vrPostId ) );
 }
 
-/* Currently not active To be deveoped for later adatation to Gutenberg
-
-function visreg_metaslot_enqueue() {
-    wp_enqueue_script( 
-    					'visreg-slot-js', 
-    					plugin_dir_url( __FILE__ ) . '/slots/visreg_slot.js', // JS file Location
-    				// Dependencies	
-    				  array( 	'wp-plugins', 
-    							'wp-edit-post',
-    							'wp-element',
-    							'wp-i18n', // For translation purposes
-    							'wp-components'
-    						),
-    					true 
-    );
-}
-add_action( 'enqueue_block_editor_assets', 'visreg_metaslot_enqueue' );
-
-*/
-
-
-//( ! ) Notice: Undefined variable: post in /Users/dd/mamp_content/wp_sandbox/app/public/wp-content/plugins/buvisreg/inc/visreg_post_metaslot.php on line 23

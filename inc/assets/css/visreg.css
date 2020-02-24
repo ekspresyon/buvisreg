@@ -1,0 +1,15 @@
+.api-links{
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+#listgenbtn, #listxprtbtn{
+  position: unset !important;
+  height:30px;
+}  
+
+.api-links-xprt{
+	float:right;
+	height:20px !important;
+}
+
