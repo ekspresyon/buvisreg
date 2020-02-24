@@ -12,14 +12,6 @@ defined( 'ABSPATH' ) or die( '' );
 define( 'BUVR', __FILE__ );
 define( 'BUVR_DIR', untrailingslashit( dirname( BUVR ) ) );
 
-
-// Activation, deactivation and uninstall script
-//require BUVR_DIR .'/setup.php';
-
-
-require BUVR_DIR .'/inc/visreg_data_table.php';
-register_activation_hook(__FILE__, 'create_visreg_data_table' );
-
 // Call in functions
 require BUVR_DIR .'/functions.php';
 

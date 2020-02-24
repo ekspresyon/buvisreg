@@ -1,10 +1,11 @@
 <?php
 /**
- * Grab latest post title by an author!
- *
- * @param array $data Options for the function.
- * @return string|null Post title for the latest,  * or null if none.
+ * These custom endpoints are still in development. the current available options are
+ * intended fro demo purposes and will mostlikely have to be more elaborate or deleted
+ * if found to be redundent
  */
+
+// Request endpoint for "Posts"
 function visreg_reqst_pst(){
 	$args = array(
 			'post_type'=> 'post'
@@ -28,6 +29,7 @@ add_action( 'rest_api_init', function () {
   ) );
 } );
 
+// Request endpoint for "Pages"
 function visreg_reqst_pg(){
 	$args = array(
 			'post_type'=> 'page'
@@ -51,6 +53,7 @@ add_action( 'rest_api_init', function () {
   ) );
 } );
 
+// Request endpoint for "flagged Pages and Posts"
 function visreg_reqst_flagged(){
   $args = array(
       'post_type' => 'any',

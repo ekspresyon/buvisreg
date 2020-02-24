@@ -2,8 +2,10 @@
 /**
  * Since we are developing in ordeer to bring earlier versions of wordpress to gutenberg,
  * we will use legacy method to create check boxes for visual regression
- *
+ * Ultimately this checkbox will have to be moved to the "Status & visibility"
+ * segment of the side bar
  * Register meta box(es).
+ *
  */
 function visreg_meta_box(){
     add_meta_box(   'visreg_checker',
