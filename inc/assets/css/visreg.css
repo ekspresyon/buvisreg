@@ -5,11 +5,77 @@
 
 #listgenbtn, #listxprtbtn{
   position: unset !important;
-  height:30px;
+  /*height:30px;*/
 }  
+
+#listgenbtnplus{
+	margin-top: 12px;
+}
+
+#listxprtbtn{
+	float: right;
+}
 
 .api-links-xprt{
 	float:right;
 	height:20px !important;
 }
+
+.vr-more-option{
+	background:#dddddd;
+	display: none;
+	padding: 10px 20px 20px;
+	margin-bottom: 5px;
+}
+.vr-more-option label {
+    /*display: inline-block;
+    width: 10em;
+    margin-right: 2.5em;*/
+}
+.hide{
+	display: none !important;
+}
+.show-vr-more-option{
+	display: block;
+	
+}
+#datePicker{
+	display:initial;
+}
+.url-copy-btn:hover{
+    background-color: rgba(0, 0, 0, 0.07);
+}
+.url-copy-btn{
+	border: none;
+	background-color: transparent;
+	color: #0071a1;
+	font-weight: 600;
+	font-size: 13px;
+	padding: 3px 7px 2px 7px;
+}
+
+.req-url-tag{
+	font-weight: 600;
+	font-size: 14px;
+}
+/*extra-parent{
+	display: flex;
+	flex-direction: row;
+}
+
+.extra{
+	flex: 1 1 0px
+	margin: 0 0 0 200px;
+}*/
+
+/*.vr-more-option select {
+    display: inline-block;
+    
+}*/
+
+.listgenbtn-more{
+	float: right;
+	padding: 6px !important;
+}
+
 

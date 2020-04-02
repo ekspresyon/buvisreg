@@ -5,21 +5,22 @@
  * if found to be redundent
  */
 
-// Request endpoint for "Posts"
+// Request endpoint for "Posts" FOR TEST
 function visreg_reqst_pst(){
-	$args = array(
-			'post_type'=> 'post'
-	);
- 	$posts = get_posts($args);
- 	$data = [];
- 	$i = 0;
+  $args = array(
+      'post_type'=> 'post'
+  );
+  $posts = get_posts($args);
+  $data = [];
+  $i = 0;
 
- 	foreach ($posts as $post) {
- 		$data[$i]['id'] = $post ->ID;
+  foreach ($posts as $post) {
+    $data[$i]['id'] = $post ->ID;
+    $data[$i]['post_type'] = get_post_type($post->ID);
     $data[$i]['title'] = get_the_title($post->ID);
- 		$data[$i]['permalink'] = get_permalink($post ->ID);
- 		$i++;
- 	}
+    $data[$i]['permalink'] = get_permalink($post ->ID);
+    $i++;
+  }
   return $data;
 }
 add_action( 'rest_api_init', function () {
@@ -29,21 +30,22 @@ add_action( 'rest_api_init', function () {
   ) );
 } );
 
-// Request endpoint for "Pages"
+// Request endpoint for "Pages" FOR TEST
 function visreg_reqst_pg(){
-	$args = array(
-			'post_type'=> 'page'
-	);
- 	$posts = get_posts($args);
- 	$data = [];
- 	$i = 0;
+  $args = array(
+      'post_type'=> 'page'
+  );
+  $posts = get_posts($args);
+  $data = [];
+  $i = 0;
 
- 	foreach ($posts as $post) {
- 		$data[$i]['id'] = $post->ID;
+  foreach ($posts as $post) {
+    $data[$i]['id'] = $post->ID;
+    $data[$i]['post_type'] = get_post_type($post->ID);
     $data[$i]['title'] = get_the_title($post->ID);
- 		$data[$i]['permalink'] = get_permalink($post->ID);
- 		$i++;
- 	}
+    $data[$i]['permalink'] = get_permalink($post->ID);
+    $i++;
+  }
   return $data;
 }
 add_action( 'rest_api_init', function () {
@@ -53,7 +55,7 @@ add_action( 'rest_api_init', function () {
   ) );
 } );
 
-// Request endpoint for "flagged Pages and Posts"
+// Request endpoint for "flagged Pages and Posts" FOR TEST
 function visreg_reqst_flagged(){
   $args = array(
       'post_type' => 'any',
@@ -67,6 +69,7 @@ function visreg_reqst_flagged(){
 
   foreach ($posts as $post) {
     $data[$i]['id'] = $post->ID;
+    $data[$i]['post_type'] = get_post_type($post->ID);
     $data[$i]['title'] = get_the_title($post->ID);
     $data[$i]['permalink'] = get_permalink($post->ID);
     $i++;
@@ -77,5 +80,33 @@ add_action( 'rest_api_init', function () {
   register_rest_route( 'visreg/v1', 'flagged', array(
     'methods' => 'GET',
     'callback' => 'visreg_reqst_flagged'
+  ) );
+} );
+
+
+// Request endpoint for "all post types"
+function visreg_reqst_all(){
+  $args = array(
+      'post_type' => 'any',
+      'numberposts' => -1
+    );
+  $posts = get_posts($args);
+  $data = [];
+  $i = 0;
+
+  foreach ($posts as $post) {
+    $data[$i]['id'] = $post->ID;
+    $data[$i]['post_type'] = get_post_type($post->ID);
+    $data[$i]['title'] = get_the_title($post->ID);
+    $data[$i]['permalink'] = get_permalink($post->ID);
+    $data[$i]['modified'] = get_the_modified_date($post->ID);
+    $i++;
+  }
+  return $data;
+}
+add_action( 'rest_api_init', function () {
+  register_rest_route( 'visreg/v1', 'everything', array(
+    'methods' => 'GET',
+    'callback' => 'visreg_reqst_all'
   ) );
 } );
