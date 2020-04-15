@@ -26,3 +26,12 @@ The plugin contains a set of custom API endpoints that helps with sending reques
 
 The response is than processes by JavaScript on the client side and generates a list table that can be later customized.
 
+## Working features
+- Copy url request
+- Quick filter
+- Advanced filter with date filtering and post-type filtering (one post typa at a time)
+
+## Not working features
+- Multiple post-type filtering
+- Flagged filtering
+- Randomized selection filtering

@@ -81,3 +81,11 @@ function visreg_drop_link($post){
     $wpdb->delete( $visregTabl, array( "post_id" => $vrPostId ) );
 }
 
+// Register metakey for REST use
+$meta_args = array(
+    'type'         => 'boolean',
+    'description'  => 'Meta key associated with the visual regression flagging of posts',
+    'single'       => true,
+    'show_in_rest' => true,
+);
+register_post_meta( '', '_vr_status_key', $meta_args );

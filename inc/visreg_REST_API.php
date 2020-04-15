@@ -96,16 +96,16 @@ function visreg_reqst_all(){
 
   foreach ($posts as $post) {
     $data[$i]['id'] = $post->ID;
-    $data[$i]['post_type'] = get_post_type($post->ID);
-    $data[$i]['title'] = get_the_title($post->ID);
-    $data[$i]['permalink'] = get_permalink($post->ID);
-    $data[$i]['modified'] = get_the_modified_date($post->ID);
+    $data[$i]['type'] = get_post_type($post->ID);
+    $data[$i]['ttl'] = get_the_title($post->ID);
+    $data[$i]['lnk'] = get_permalink($post->ID);
+    $data[$i]['mod'] = get_the_modified_date($post->ID);
     $i++;
   }
   return $data;
 }
 add_action( 'rest_api_init', function () {
-  register_rest_route( 'visreg/v1', 'everything', array(
+  register_rest_route( 'wp/v2', 'everything', array(
     'methods' => 'GET',
     'callback' => 'visreg_reqst_all'
   ) );
