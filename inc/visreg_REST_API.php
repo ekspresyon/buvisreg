@@ -5,6 +5,8 @@
  * if found to be redundent
  */
 
+
+
 // Request endpoint for "Posts" FOR TEST
 function visreg_reqst_pst(){
   $args = array(
@@ -102,10 +104,13 @@ function visreg_reqst_all(){
     $data[$i]['mod'] = get_the_modified_date($post->ID);
     $i++;
   }
+  if ( empty( $data ) ) {
+    return null;
+  }
   return $data;
 }
 add_action( 'rest_api_init', function () {
-  register_rest_route( 'wp/v2', 'everything', array(
+  register_rest_route( 'visreg/v1', 'everything', array(
     'methods' => 'GET',
     'callback' => 'visreg_reqst_all'
   ) );

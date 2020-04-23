@@ -65,10 +65,9 @@ function mroptn(event){
 		*/
 		if(optionslct[1].value == 0){
 			flag = ""
-			console.log("no flagging options selected")
 		}
 		else{
-			flag = "meta_key=_vr_status_key&meta_value=true"
+			flag = "filter[meta_key]=_vr_status_key&filter[meta_value]=1"
 		}
 
 		//flag = optionslct[1].value // Flagging parameter output to URL

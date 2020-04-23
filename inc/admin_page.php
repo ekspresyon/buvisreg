@@ -171,18 +171,6 @@ function bu_visreg_admin_page()
             </div>
             
  
-    <?php
-        // From "VisReg_url_List_Table" class - file : /inc/visreg_url_list_table.php
-
-            //$vrListTable = new VisReg_url_List_Table();
-              //$vrListTable->prepare_items();
-              //$vrListTable->views();
-              //$vrListTable->search_box( 'search', 'search_id' );
-              //$vrListTable->display();
-
-            //print_r ($vrListTable->fetch_visreg_table_data());
-            //echo ($vrListTable->column_default($item, $column_name));
-    ?>  
         <div id="vrlinks">
             
         </div>
