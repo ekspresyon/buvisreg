@@ -38,7 +38,7 @@ function upload_links_form_script($hook)
     }
         wp_enqueue_script('wp_api');
         wp_register_style('visreg-tab-css', plugin_dir_url(__FILE__).'assets/css/visreg.css', array(), false, false);
-        wp_register_script('vr-links-upload-toggle', plugin_dir_url(__FILE__).'assets/js/links-upload-toggle.js', array(), false, true);
+        // wp_register_script('vr-links-upload-toggle', plugin_dir_url(__FILE__).'assets/js/links-upload-toggle.js', array(), false, true);
         wp_register_script('vr-admin-page-tabl', plugin_dir_url(__FILE__).'assets/js/vr_data_table.js', array(), false, true);
         wp_enqueue_style('visreg-tab-css');
         wp_enqueue_script(array('vr-links-upload-toggle',
@@ -78,9 +78,9 @@ function bu_visreg_admin_page()
         <div class="api-links tablenav">
             
                 <select id="linkselector"  onchange="vrOptndisp(this.value)">
-                    <option value="0" data-url="http://wp.local/wp-json/visreg/v1/flagged">Flagged</option>
-                    <option value="0" data-url="http://wp.local/wp-json/wp/v2/posts">Posts</option>
-                    <option value="0" data-url="http://wp.local/wp-json/wp/v2/pages">Pages</option>
+                    <option value="0" data-url="<?php echo site_url();?>/wp-json/visreg/v1/flagged">Flagged</option>
+                    <option value="0" data-url="<?php echo site_url();?>/wp-json/wp/v2/posts">Posts</option>
+                    <option value="0" data-url="<?php echo site_url();?>/wp-json/wp/v2/pages">Pages</option>
                     <option value="0" disabled>Random</option>
                     <option value="optnTrig" >more options</option>
                 </select>
@@ -127,7 +127,10 @@ function bu_visreg_admin_page()
                         <select class="vrfltroptn">
                             <!-- <option value="0">All post types</option> -->
                             <?php
-                                $post_types = get_post_types(array(), 'objects');
+                                $args = array(
+                                    'public'   => true,
+                                );
+                                $post_types = get_post_types($args, 'objects');
                                  
                                 foreach ( $post_types  as $post_type ) {
                                    echo '<option value =' . $post_type->name .'s'. '>';
@@ -174,6 +177,13 @@ function bu_visreg_admin_page()
         <div id="vrlinks">
             
         </div>
+        <?php
+            // $request = new WP_REST_Request( 'GET', '/wp/v2/posts' );
+            // // Set one or more request query parameters
+            // $request->set_param( 'per_page', 20 );
+            // $response = rest_do_request( $request );
+            // echo $response;
+        ?>
     </div>
 <?php
 }

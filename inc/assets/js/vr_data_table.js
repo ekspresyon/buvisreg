@@ -108,7 +108,7 @@ function mroptn(event){
 		}
 
 		// Build the link
-		optlnk = siteurl+"wp-json/wp/v2/"+ type + flag + date
+		optlnk = siteurl+"/wp-json/wp/v2/"+ type + flag + date
 		listgen()
 	}
 	else {

@@ -10,7 +10,8 @@
 // Request endpoint for "Posts" FOR TEST
 function visreg_reqst_pst(){
   $args = array(
-      'post_type'=> 'post'
+      'post_type'=> 'post',
+      'posts_per_page' => 100
   );
   $posts = get_posts($args);
   $data = [];
@@ -35,7 +36,8 @@ add_action( 'rest_api_init', function () {
 // Request endpoint for "Pages" FOR TEST
 function visreg_reqst_pg(){
   $args = array(
-      'post_type'=> 'page'
+      'post_type'=> 'page',
+      'posts_per_page'=> 100
   );
   $posts = get_posts($args);
   $data = [];
@@ -63,7 +65,7 @@ function visreg_reqst_flagged(){
       'post_type' => 'any',
       'meta_key' => '_vr_status_key',
       'meta_value' => 1,
-      'numberposts' => -1
+      'posts_per_page' => -1
     );
   $posts = get_posts($args);
   $data = [];
@@ -90,18 +92,18 @@ add_action( 'rest_api_init', function () {
 function visreg_reqst_all(){
   $args = array(
       'post_type' => 'any',
-      'numberposts' => -1
+      'posts_per_page' => -1
     );
   $posts = get_posts($args);
   $data = [];
   $i = 0;
 
   foreach ($posts as $post) {
-    $data[$i]['id'] = $post->ID;
+    // $data[$i]['id'] = $post->ID;
     $data[$i]['type'] = get_post_type($post->ID);
-    $data[$i]['ttl'] = get_the_title($post->ID);
-    $data[$i]['lnk'] = get_permalink($post->ID);
-    $data[$i]['mod'] = get_the_modified_date($post->ID);
+    // $data[$i]['ttl'] = get_the_title($post->ID);
+    // $data[$i]['mod'] = get_the_modified_date($post->ID);
+    // $data[$i]['lnk'] = get_permalink($post->ID);
     $i++;
   }
   if ( empty( $data ) ) {
@@ -110,7 +112,7 @@ function visreg_reqst_all(){
   return $data;
 }
 add_action( 'rest_api_init', function () {
-  register_rest_route( 'visreg/v1', 'everything', array(
+  register_rest_route( 'visreg/', 'everything', array(
     'methods' => 'GET',
     'callback' => 'visreg_reqst_all'
   ) );
