@@ -24,7 +24,7 @@ To use the list, hit “Export list” and the list of URLs will be available fo
 ## How it works
 The plugin contains a set of custom API endpoints that helps with sending request via the wp-json option built into WordPress. For more information on wp-json visit the WordPress developer codex.  
 
-The response is than processes by JavaScript on the client side and generates a list table that can be later customized.
+The response is than processes on the client side and generates a list table of published posts that can be later customized.
 
 ## Working features
 - Copy url request

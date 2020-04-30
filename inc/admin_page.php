@@ -79,8 +79,8 @@ function bu_visreg_admin_page()
             
                 <select id="linkselector"  onchange="vrOptndisp(this.value)">
                     <option value="0" data-url="<?php echo site_url();?>/wp-json/visreg/v1/flagged">Flagged</option>
-                    <option value="0" data-url="<?php echo site_url();?>/wp-json/wp/v2/posts">Posts</option>
-                    <option value="0" data-url="<?php echo site_url();?>/wp-json/wp/v2/pages">Pages</option>
+                    <option value="0" data-url="<?php echo site_url();?>/wp-json/visreg/v1/posts">Posts</option>
+                    <option value="0" data-url="<?php echo site_url();?>/wp-json/visreg/v1/pages">Pages</option>
                     <option value="0" disabled>Random</option>
                     <option value="optnTrig" >more options</option>
                 </select>
@@ -125,15 +125,18 @@ function bu_visreg_admin_page()
                         </select></label> -->
 
                         <select class="vrfltroptn">
+                            <option value ="posts" >Posts</option>
+                            <option value ="pages" >Pages</option>
                             <!-- <option value="0">All post types</option> -->
                             <?php
                                 $args = array(
                                     'public'   => true,
+                                    '_builtin'   => false,
                                 );
                                 $post_types = get_post_types($args, 'objects');
                                  
                                 foreach ( $post_types  as $post_type ) {
-                                   echo '<option value =' . $post_type->name .'s'. '>';
+                                   echo '<option value =' . $post_type->name.'>';
                                    echo $post_type->labels->singular_name;
                                    echo '</option>';
                                 }
