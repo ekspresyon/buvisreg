@@ -7,7 +7,25 @@
 		
 	}
 	function get_allcats(){
-		
+		$args = array(
+			//'hide_invisible' => true
+		);
+
+		$cats = get_terms( $args );
+		$data = [];
+		$i = 0;
+
+		foreach ( $cats  as $cat ){
+	      // if($cat == false){
+	      //   return;
+	      // }
+	      $data[$i] = get_term_link($cat->term_id);
+	        $i++;
+	    }
+	    if ( empty( $data ) ) {
+	        return null;
+	    }
+	      return $data;
 	}
 
 	function get_alltags(){

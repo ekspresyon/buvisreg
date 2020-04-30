@@ -18,20 +18,13 @@ function visreg_reqst_pst(){
   $i = 0;
 
   foreach ($posts as $post) {
-    $data[$i]['id'] = $post ->ID;
-    $data[$i]['type'] = get_post_type($post->ID);
-    $data[$i]['title'] = get_the_title($post->ID);
-    $data[$i]['link'] = get_permalink($post ->ID);
-    $data[$i]['modified'] = get_the_modified_date($post ->ID);
+    $data[$i] = get_permalink($post->ID);
     $i++;
   }
   return $data;
 }
 add_action( 'rest_api_init', function () {
-  register_rest_route( 'visreg/v1', 'posts', array(
-    'methods' => 'GET',
-    'callback' => 'visreg_reqst_pst',
-  ) );
+
 } );
 
 // Request endpoint for "Pages" FOR TEST
@@ -45,49 +38,12 @@ function visreg_reqst_pg(){
   $i = 0;
 
   foreach ($posts as $post) {
-    $data[$i]['id'] = $post ->ID;
-    $data[$i]['type'] = get_post_type($post->ID);
-    $data[$i]['title'] = get_the_title($post->ID);
-    $data[$i]['link'] = get_permalink($post ->ID);
-    $data[$i]['modified'] = get_the_modified_date($post ->ID);
+    $data[$i] = get_permalink($post->ID);
     $i++;
   }
   return $data;
 }
-add_action( 'rest_api_init', function () {
-  register_rest_route( 'visreg/v1', 'pages', array(
-    'methods' => 'GET',
-    'callback' => 'visreg_reqst_pg',
-  ) );
-} );
 
-// Request endpoint for "flagged Pages and Posts" FOR TEST
-function visreg_reqst_flagged(){
-  $args = array(
-      'post_type' => 'pages',
-      'meta_key' => '_vr_status_key',
-      'meta_value' => 1,
-      'posts_per_page' => -1
-    );
-  $posts = get_posts($args);
-  $data = [];
-  $i = 0;
-
-  foreach ($posts as $post) {
-    $data[$i]['id'] = $post->ID;
-    $data[$i]['post_type'] = get_post_type($post->ID);
-    $data[$i]['title'] = get_the_title($post->ID);
-    $data[$i]['permalink'] = get_permalink($post->ID);
-    $i++;
-  }
-  return $data;
-}
-add_action( 'rest_api_init', function () {
-  register_rest_route( 'visreg/v1', 'flagged', array(
-    'methods' => 'GET',
-    'callback' => 'visreg_reqst_flagged'
-  ) );
-} );
 
 
 // Request endpoint for "all post types"
@@ -101,10 +57,6 @@ function visreg_reqst_all(){
   $i = 0;
 
   foreach ($posts as $post) {
-    //$data[$i]['id'] = $post->ID;
-    //$data[$i]['type'] = get_post_type($post->ID);
-    // $data[$i]['ttl'] = get_the_title($post->ID);
-    // $data[$i]['mod'] = get_the_modified_date($post->ID);
     $data[$i] = get_permalink($post->ID);
     $i++;
   }
@@ -118,6 +70,14 @@ function visreg_reqst_all(){
 require BUVR_DIR .'/inc/visreg_qwery_filters.php';
 
 add_action( 'rest_api_init', function () {
+  register_rest_route( 'visreg/v1', 'posts', array(
+    'methods' => 'GET',
+    'callback' => 'visreg_reqst_pst',
+  ) );
+  register_rest_route( 'visreg/v1', 'pages', array(
+    'methods' => 'GET',
+    'callback' => 'visreg_reqst_pg',
+  ) );
   register_rest_route( 'visreg/v1/', 'allposts', array(
     'methods' => 'GET',
     'callback' => 'visreg_reqst_all'
@@ -128,6 +88,6 @@ add_action( 'rest_api_init', function () {
   ) );
   register_rest_route( 'visreg/v1/', 'allcategories', array(
     'methods' => 'GET',
-    'callback' => 'get_cats'
+    'callback' => 'get_allcats'
   ) );
 } );
