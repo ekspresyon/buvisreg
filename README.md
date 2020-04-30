@@ -10,6 +10,15 @@ bu = Boston University
 vis = Visual  
 reg = Regression  
 
+## Routes
+### In use
+Get output of all post types URLs
+{yoursite address}/wp-json/visreg/v1/allposts
+
+### Upcoming
+Get output of all category URLs
+{yoursite address}/wp-json/visreg/v1/allcategories
+
 ## Admin page
 The link to the admin page for this plugin is located under “Tools” in the dashboard menu
 
@@ -35,3 +44,4 @@ The response is than processes on the client side and generates a list table of 
 - Multiple post-type filtering
 - Flagged filtering
 - Randomized selection filtering
+
