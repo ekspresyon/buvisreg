@@ -2,7 +2,9 @@
   margin-top: 10px;
   margin-bottom: 5px;
 }
-
+.vrlink-help{
+	margin-left: 2px;
+}
 #listgenbtn, #listxprtbtn{
   position: unset !important;
   /*height:30px;*/
@@ -78,4 +80,49 @@
 	padding: 6px !important;
 }
 
+.pt-list-wrap{
+	width:30%;
+	padding-left: 15px;
+}
+.pt-list-wrap label{
+	width: 100%;
+	display: block;
+	margin-bottom: 10px;
+}
+/*===============================DEMO=================================*/
 
+/* Style the tab buttons */
+.tablink {
+  background-color: #23282d;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 20%;
+}
+
+/* Change background color of buttons on hover */
+.tablink:hover {
+  background-color: #191e23;
+}
+
+/* Set default styles for tab content */
+.tabcontent {
+  color: #444;
+  display: none;
+  padding: 50px 0;
+}
+
+.vrTabsWraper{
+	height: 240px;
+}
+
+
+/* Style each tab content individually */
+/*#London {background-color:red;}
+#Paris {background-color:green;}
+#Tokyo {background-color:blue;}
+#Oslo {background-color:orange;}*/

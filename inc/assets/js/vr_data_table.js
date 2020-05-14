@@ -13,8 +13,10 @@ var vrapiRoute = document.getElementById("vrapiRoute")
 var cpReqUrl = document.getElementById("cpReqUrl")
 var siteurl = document.getElementById("apireqform").action
 
+var vrlnkgen = document.getElementById("vrlinksgen")
 var vrtbldiv = document.getElementById("vrlinks")
 var fetchurl = ""
+
 
 //optnTrig.addEventListener("change", vrOptndisp)
 lstgenbtn.addEventListener("click", mroptn)
@@ -134,12 +136,12 @@ function listgen(event){
 	    return response.json();
 	  })
 	  .then((vrjsondata) => {
-
+	  	console.log(vrjsondata[0]);
 	  	var tablhead = '<thead><tr><th>Post type</th><th>Title</th><th>Permalinks</th><th>Last modified</th></tr></thead>'
 		var vrtable = '<table class="wp-list-table widefat fixed striped posts">' + tablhead
 		// Generate table rows
 		vrjsondata.forEach(function(rowdata){
-			vrtable += '<tr><td>' + rowdata.type + '</td>'+'<td>' + rowdata.title.rendered + '</td>' + '<td>' + rowdata.link + '</td>' + '<td>' + rowdata.modified.toLocaleString() + '</td>'+'</tr>'
+			vrtable += '<tr><td>' + rowdata.type + '</td>'+'<td>' + rowdata.title + '</td>' + '<td>' + rowdata.link + '</td>' + '<td>'+rowdata.modified+'</td>'+'</tr>'
 		})
 		// Close table tag
 		vrtable += '</table>'
@@ -149,7 +151,7 @@ function listgen(event){
 
 		cpReqUrl.classList.remove("hide")
 
-	    console.log(vrjsondata);
+	    
 	  });
 }
 
@@ -207,8 +209,30 @@ function vrAPIurlcopy(){
   }  
 }
 
+// for the tablinks
+function opnVrOptnTab(tabName, elmnt, color) {
+  // Hide all elements with class="tabcontent" by default */
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
 
+  // Remove the background color of all tablinks/buttons
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
 
+  // Show the specific tab content
+  document.getElementById(tabName).style.display = "block";
+
+  // Add the specific color to the button used to open the tab content
+  elmnt.style.backgroundColor = color;
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
 
 
 

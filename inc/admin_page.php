@@ -1,11 +1,4 @@
 <?php
-//** For testin purpose option 1
-//require_once BUVR_DIR. '/inc/url_list_table.php';
-
-//** For testin purpose option 2
-//require_once BUVR_DIR. '/inc/visreg_url_list_table.php';
-
-
 
 /* Generate menu link */
 function buvis_reg_menu()
@@ -59,124 +52,53 @@ function bu_visreg_admin_page()
         <h1>Visual regression test</h1>
         <!-- <hr> -->
         <em>To use this tool, select a post type that you wish to test and add filtering options if necessary. Click on the "<strong>Generate list</strong>" button to see a list of the different post contained within you selection.</em>
-        <!-- <p>Below is a list table of the links selected by site managers to be tested when update/upgrades are scheduled. you can remove or add test URLs as needed.</p> -->
         <hr>
-        
-        
-        <!-- <div class="upload-plugin-wrap">
-            <div class="upload-plugin">
-                <p class="install-help">If you have links to be tested in a .json format, you may submit them by uploading it here.</p>
-                <form method="post" enctype="multipart/form-data" class="wp-upload-form" action="#">
-                    <label class="screen-reader-text" for="linksfile">Test links file</label>
-                    <input type="file" id="linksfile" name="linksfile">
-                    <input type="submit" name="install-plugin-submit" id="install-plugin-submit" class="button" value="Upload now" disabled=""> 
-                </form>
-            </div>
-        </div> -->
+        <!-- The buttons on top of the page to pen the tabs -->
+        <button class="tablink" onclick="opnVrOptnTab('vrlinksgen', this, '#0073aa')" id="defaultOpen">Routes</button>
+        <button class="tablink" onclick="opnVrOptnTab('vrpresets', this, '#0073aa')">Presets</button>
+        <button class="tablink" onclick="opnVrOptnTab('vrcustom', this, '#0073aa')" >Custom search</button>
+        <button class="tablink" onclick="opnVrOptnTab('vrupload', this, '#0073aa')">Manual upload</button>
+        <button disabled class="tablink" onclick="opnVrOptnTab('vrrandom', this, '#0073aa')">Random</button>
 
-        
-        <div class="api-links tablenav">
-            
-                <select id="linkselector"  onchange="vrOptndisp(this.value)">
-                    <option value="0" data-url="<?php echo site_url();?>/wp-json/visreg/v1/flagged">Flagged</option>
-                    <option value="0" data-url="<?php echo site_url();?>/wp-json/visreg/v1/posts">Posts</option>
-                    <option value="0" data-url="<?php echo site_url();?>/wp-json/visreg/v1/pages">Pages</option>
-                    <option value="0" disabled>Random</option>
-                    <option value="optnTrig" >more options</option>
-                </select>
+        <!-- The tabs that have been loade by the buttons -->
+        <div id="vrlinksgen" class="tabcontent">
+            <?php require BUVR_DIR .'/inc/tabs/linksgen.php';?>
+        </div>
+        <div id="vrpresets" class="tabcontent">
+            <h1>Under development</h1>
+            <?php require BUVR_DIR .'/inc/tabs/presets.php';?>
+        </div>
 
-                <button id="listgenbtn" class="page-title-action button action">
-                    Generate list
-                </button>
-            
-            <!-- <a id="listxprtbtn" class="page-title-action api-links-xprt" href="data:application/octet-stream,HELLO-WORLDDDDDDDD" download="test_urls.json">Export list</a>  --> 
-            <!-- <button id="listxprtbtn" class="page-title-action button action">
-                Export list                
-            </button> -->
+        <div id="vrcustom" class="tabcontent">
+            <h1>Under development</h1>
+            <?php require BUVR_DIR .'/inc/tabs/custom-search.php';?>
+        </div>
+
+        <div id="vrupload" class="tabcontent">
+
+            <h1>Under development</h1>
+          <?php 
+            require BUVR_DIR .'/inc/tabs/manual-uploads.php';
+            vr_manual_uploads();
+          ?>
+
+          <!-- <p>Please choose a list to add the link into. You can type a new list mane or leave it blank do add to the <strong>Default</strong> list</p>
+          <input type="text" name="" value="" maxlength="15"> -->
             
         </div>
-        <div id="vr-more-option" class="vr-more-option">
-            <h3>More options</h3>
-                <form id="apireqform" action="<?php echo site_url();?>" method="get" accept-charset="utf-8">
-                    <div class="tablenav">
-                        <!-- <label id="label1" for="drop1">Choose option:
-                            <select id="drop1" onchange="vrdemo(this.value)">
-                                <option value="0">- Select option -</option>
-                                <option value="1" disabled>Post types</option>
-                                <option value="2">Archives</option>
-                                <option value="3" disabled="">Categories</option>
-                                <option value="4" disabled>Tags</option>
-                            </select></label>
-                 
-                        <label id="label2" for="drop1" class="hide">Archives options:
-                        <select id="drop2" onchange="vrdemo(this.value)">
-                            <option value="0">- Select option -</option>
-                            <option value="2" disabled>Red</option>
-                            <option value="3" disabled>Blue</option>
-                            <option value="4" >Green</option>
-                        </select></label>
-                    
-                        <label id="label3" for="drop1" class="hide">Green options:
-                        <select id="drop3">
-                            <option value="0">- Select option -</option>
-                            <option value="2">Cian</option>
-                            <option value="3">Black</option>
-                            <option value="4">Magenta</option>
-                        </select></label> -->
 
-                        <select class="vrfltroptn">
-                            <option value ="posts" >Posts</option>
-                            <option value ="pages" >Pages</option>
-                            <!-- <option value="0">All post types</option> -->
-                            <?php
-                                $args = array(
-                                    'public'   => true,
-                                    '_builtin'   => false,
-                                );
-                                $post_types = get_post_types($args, 'objects');
-                                 
-                                foreach ( $post_types  as $post_type ) {
-                                   echo '<option value =' . $post_type->name.'>';
-                                   echo $post_type->labels->singular_name;
-                                   echo '</option>';
-                                }
-                            ?>
-                        </select>
-                        <select class="vrfltroptn">
-                            <option value="0">All available links</option>
-                            <option value="1">Flagged only</option>
-                        </select>
-                        <select class="vrdtfltroptn" onchange="vrdatepick(this.value)">
-                            <option value="0">Any date</option>
-                            <option value="7776000000">Last 90 days</option>
-                            <option value="5184000000">Last 60 days</option>
-                            <option value="2592000000">Last 30 days</option>
-                            <option value="1">Date range</option>
-                        </select>
-
-                        <div id="datePicker" class="hide">
-                            <label>From :<input type="date" class="vrdtfltroptn" name="startDate" value=""></label>
-                            <label>to :<input type="date" class="vrdtfltroptn" name="endDate" value=""></label>
-                        </div>
-                        
-                    </div>  <!-- end .tablenav -->
-
-                    <button id="listgenbtnplus" class="page-title-action button action">
-                        Generate list
-                    </button>         
-                </form>
-                
-            </div><!--end #vr-more-option --> 
-            <div id="cpReqUrl" class="tablenav hide">
+        <div id="vrrandom" class="tabcontent">
+            <h1>Under development</h1>
+          <?php //require BUVR_DIR .'/inc/tabs/manual-uploads.php'?>
+        </div>
+        
+        <div id="cpReqUrl" class="tablenav hide">
                 <span class="req-url-tag">API request link: </span>
                 <code id="vrapiRoute"></code>
                 <button id="copyUrlbtn" class="url-copy-btn" onclick="vrAPIurlcopy()">
                     Copy
                 </button>
-
-            </div>
-            
- 
+        </div>
         <div id="vrlinks">
             
         </div>
