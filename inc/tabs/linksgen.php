@@ -6,7 +6,12 @@
 		$args = array(
 	    'public'   => true,
 	    '_builtin'   => 0,
-	);
+	);?>
+
+	<label><input type="checkbox" name="" value="page">Pages</label>
+	<label><input type="checkbox" name="" value="post">Posts</label>
+
+	<?php	
 	$vrpostTypes = get_post_types($args, 'objects');
 		foreach ( $vrpostTypes  as $vrpostType ) {
 	       echo '<label><input type="checkbox" name="" value="'. $vrpostType->name.'">';
