@@ -1,3 +1,6 @@
+#vrsiteUrl{
+	display: none;
+}
 .api-links{
   margin-top: 10px;
   margin-bottom: 5px;
@@ -43,6 +46,9 @@
 }
 #datePicker{
 	display:initial;
+}
+#cpReqUrl{
+	margin-top: 30px;
 }
 .url-copy-btn:hover{
     background-color: rgba(0, 0, 0, 0.07);

@@ -48,67 +48,37 @@ function bu_visreg_admin_page()
     if (!current_user_can('manage_options')) {
         wp_die(__('You do not have sufficient permissions to access this page.'));
     } ?>
+    <p id="vrsiteUrl"><?php echo site_url();?></p>
     <div class="wrap">
         <h1>Visual regression test</h1>
         <!-- <hr> -->
         <em>To use this tool, select a post type that you wish to test and add filtering options if necessary. Click on the "<strong>Generate list</strong>" button to see a list of the different post contained within you selection.</em>
         <hr>
-        <!-- The buttons on top of the page to pen the tabs -->
-        <button class="tablink" onclick="opnVrOptnTab('vrlinksgen', this, '#0073aa')" id="defaultOpen">Routes</button>
-        <button class="tablink" onclick="opnVrOptnTab('vrpresets', this, '#0073aa')">Presets</button>
-        <button class="tablink" onclick="opnVrOptnTab('vrcustom', this, '#0073aa')" >Custom search</button>
-        <button class="tablink" onclick="opnVrOptnTab('vrupload', this, '#0073aa')">Manual upload</button>
-        <button disabled class="tablink" onclick="opnVrOptnTab('vrrandom', this, '#0073aa')">Random</button>
 
         <!-- The tabs that have been loade by the buttons -->
-        <div id="vrlinksgen" class="tabcontent">
-            <?php require BUVR_DIR .'/inc/tabs/linksgen.php';?>
-        </div>
-        <div id="vrpresets" class="tabcontent">
-            <h1>Under development</h1>
-            <?php require BUVR_DIR .'/inc/tabs/presets.php';?>
-        </div>
-
-        <div id="vrcustom" class="tabcontent">
-            <h1>Under development</h1>
-            <?php require BUVR_DIR .'/inc/tabs/custom-search.php';?>
-        </div>
-
-        <div id="vrupload" class="tabcontent">
-
-            <h1>Under development</h1>
-          <?php 
-            require BUVR_DIR .'/inc/tabs/manual-uploads.php';
-            vr_manual_uploads();
-          ?>
-
-          <!-- <p>Please choose a list to add the link into. You can type a new list mane or leave it blank do add to the <strong>Default</strong> list</p>
-          <input type="text" name="" value="" maxlength="15"> -->
-            
-        </div>
-
-        <div id="vrrandom" class="tabcontent">
-            <h1>Under development</h1>
-          <?php //require BUVR_DIR .'/inc/tabs/manual-uploads.php'?>
-        </div>
         
-        <div id="cpReqUrl" class="tablenav hide">
-                <span class="req-url-tag">API request link: </span>
+            <?php require BUVR_DIR .'/inc/tabs/linksgen.php';?>
+       
+        
+        <div id="cpReqUrl" class="tablenav">
+            <hr>
+            <span class="req-url-tag">API route: </span>
                 <code id="vrapiRoute"></code>
                 <button id="copyUrlbtn" class="url-copy-btn" onclick="vrAPIurlcopy()">
                     Copy
                 </button>
+                <br><br>
+                <span class="req-url-tag">API bash: </span>
+                <code id="vrapiBash"></code>
+                <button id="copyUrlbtn" class="url-copy-btn" onclick="vrAPIbshcopy()">
+                    Copy
+                </button>
+                
         </div>
         <div id="vrlinks">
             
         </div>
-        <?php
-            // $request = new WP_REST_Request( 'GET', '/wp/v2/posts' );
-            // // Set one or more request query parameters
-            // $request->set_param( 'per_page', 20 );
-            // $response = rest_do_request( $request );
-            // echo $response;
-        ?>
+
     </div>
 <?php
 }

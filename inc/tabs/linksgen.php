@@ -1,6 +1,6 @@
 
 
-<div class="pt-list-wrap">
+<div id="visred-pt-list" class="pt-list-wrap">
 <h3>Select the post types to be tested</h3>
 	<?php
 		$args = array(
