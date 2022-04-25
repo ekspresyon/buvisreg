@@ -1,6 +1,4 @@
 <?php
-
-
 // Call the visual regression metaslot
 require BUVR_DIR .'/inc/visreg_post_metaslot.php';
 

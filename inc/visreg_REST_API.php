@@ -113,21 +113,3 @@ function visreg_reqst_all(){
   }
    return $data;
 }
-
-// Call API visreg filter class
-require BUVR_DIR .'/inc/visreg_qwery_filters.php';
-
-add_action( 'rest_api_init', function () {
-  register_rest_route( 'visreg/v1/', 'allposts', array(
-    'methods' => 'GET',
-    'callback' => 'visreg_reqst_all'
-  ) );
-  register_rest_route( 'visreg/v1/', 'allarchives', array(
-    'methods' => 'GET',
-    'callback' => 'get_allarchives'
-  ) );
-  register_rest_route( 'visreg/v1/', 'allcategories', array(
-    'methods' => 'GET',
-    'callback' => 'get_cats'
-  ) );
-} );

@@ -1,4 +1,3 @@
-
 <?php
 /**
 Plugin Name: BU Visual Regression Test - Demo
